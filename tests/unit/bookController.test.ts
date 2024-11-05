@@ -1,5 +1,11 @@
 import { Request, Response } from 'express';
-import { createBook, getAllBooks, getBookById, updateBook, deleteBook } from '../../src/controllers/bookController';
+import {
+  createBook,
+  getAllBooks,
+  getBookById,
+  updateBook,
+  deleteBook,
+} from '../../src/controllers/bookController';
 import Book from '../../src/models/Book';
 
 // Mock the Book model
@@ -13,12 +19,12 @@ describe('Book Controller', () => {
   beforeEach(() => {
     responseObject = {
       statusCode: 0,
-      json: jest.fn()
+      json: jest.fn(),
     };
     mockRequest = {};
     mockResponse = {
       status: jest.fn().mockReturnValue({ json: responseObject.json }),
-      json: responseObject.json
+      json: responseObject.json,
     };
   });
 
@@ -28,7 +34,7 @@ describe('Book Controller', () => {
       author: 'Test Author',
       year: 2023,
       genre: 'Test Genre',
-      isbn: '1234567890'
+      isbn: '1234567890',
     };
 
     it('should create a book successfully', async () => {
@@ -55,7 +61,7 @@ describe('Book Controller', () => {
   describe('getAllBooks', () => {
     const mockBooks = [
       { title: 'Book 1', author: 'Author 1' },
-      { title: 'Book 2', author: 'Author 2' }
+      { title: 'Book 2', author: 'Author 2' },
     ];
 
     it('should get all books successfully', async () => {

@@ -24,36 +24,39 @@ A RESTful API for managing books built with Express.js, TypeScript, and MongoDB.
 ## Installation
 
 1. Clone the repository:
-\`\`\`bash
-git clone https://github.com/[your-username]/book-management-api.git
-cd book-management-api
-\`\`\`
+   \`\`\`bash
+   git clone https://github.com/[your-username]/book-management-api.git
+   cd book-management-api
+   \`\`\`
 
 2. Install dependencies:
-\`\`\`bash
-npm install
-\`\`\`
+   \`\`\`bash
+   npm install
+   \`\`\`
 
 3. Create a .env file in the root directory:
-\`\`\`
-PORT=3000
-MONGODB_URI=mongodb://localhost:27017/book-management
-\`\`\`
+   \`\`\`
+   PORT=3000
+   MONGODB_URI=mongodb://localhost:27017/book-management
+   \`\`\`
 
 ## Running the Application
 
 ### Development Mode
+
 \`\`\`bash
 npm run dev
 \`\`\`
 
 ### Production Mode
+
 \`\`\`bash
 npm run build
 npm start
 \`\`\`
 
 ### Using Docker
+
 \`\`\`bash
 docker-compose up
 \`\`\`

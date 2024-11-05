@@ -27,14 +27,12 @@ describe('Book API Integration Tests', () => {
     author: 'Test Author',
     year: 2023,
     genre: 'Test Genre',
-    isbn: '1234567890'
+    isbn: '1234567890',
   };
 
   describe('POST /api/books', () => {
     it('should create a new book', async () => {
-      const response = await request(app)
-        .post('/api/books')
-        .send(mockBook);
+      const response = await request(app).post('/api/books').send(mockBook);
 
       expect(response.status).toBe(201);
       expect(response.body).toHaveProperty('title', mockBook.title);
@@ -42,9 +40,7 @@ describe('Book API Integration Tests', () => {
     });
 
     it('should fail to create book with missing required fields', async () => {
-      const response = await request(app)
-        .post('/api/books')
-        .send({ title: 'Test Book' });
+      const response = await request(app).post('/api/books').send({ title: 'Test Book' });
 
       expect(response.status).toBe(500);
     });
@@ -54,8 +50,7 @@ describe('Book API Integration Tests', () => {
     it('should get all books', async () => {
       await Book.create(mockBook);
 
-      const response = await request(app)
-        .get('/api/books');
+      const response = await request(app).get('/api/books');
 
       expect(response.status).toBe(200);
       expect(Array.isArray(response.body)).toBeTruthy();
@@ -67,16 +62,14 @@ describe('Book API Integration Tests', () => {
     it('should get book by id', async () => {
       const book = await Book.create(mockBook);
 
-      const response = await request(app)
-        .get(`/api/books/${book._id}`);
+      const response = await request(app).get(`/api/books/${book._id}`);
 
       expect(response.status).toBe(200);
       expect(response.body).toHaveProperty('title', mockBook.title);
     });
 
     it('should return 404 for non-existent book', async () => {
-      const response = await request(app)
-        .get(`/api/books/${new mongoose.Types.ObjectId()}`);
+      const response = await request(app).get(`/api/books/${new mongoose.Types.ObjectId()}`);
 
       expect(response.status).toBe(404);
     });
@@ -87,9 +80,7 @@ describe('Book API Integration Tests', () => {
       const book = await Book.create(mockBook);
       const updatedData = { title: 'Updated Title' };
 
-      const response = await request(app)
-        .put(`/api/books/${book._id}`)
-        .send(updatedData);
+      const response = await request(app).put(`/api/books/${book._id}`).send(updatedData);
 
       expect(response.status).toBe(200);
       expect(response.body).toHaveProperty('title', updatedData.title);
@@ -100,11 +91,10 @@ describe('Book API Integration Tests', () => {
     it('should delete book', async () => {
       const book = await Book.create(mockBook);
 
-      const response = await request(app)
-        .delete(`/api/books/${book._id}`);
+      const response = await request(app).delete(`/api/books/${book._id}`);
 
       expect(response.status).toBe(200);
-      
+
       const deletedBook = await Book.findById(book._id);
       expect(deletedBook).toBeNull();
     });
